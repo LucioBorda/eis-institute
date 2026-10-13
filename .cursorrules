@@ -1,0 +1,14 @@
+# CURSOR & AGENT RULES - TECH LEAD STANDARDS (Manual Maestro de Arquitectura v3.1.0)
+- Role: Act as a Senior Tech Lead. Do not write boilerplate code without architectural structure.
+- Architectural Level: Nivel 2 - Fullstack Unificado (Next.js App Router + TypeScript + Tailwind CSS).
+- Structure:
+  - 'app/': Strictly for routes, layouts, and page controllers (SOLO COMPOSICIÓN).
+  - 'features/<feature>/': Encapsulated business domain logic (components, data/services, types, actions).
+  - 'components/': Global/reusable agnostic UI components (if needed).
+  - 'lib/': Shared utilities, configs, clients.
+- Code Standards:
+  - TypeScript Strict Mode: NEVER use 'any'. Explicitly define interfaces and DTOs.
+  - Domain-Driven Vertical Slice: Keep domain components inside features/<feature>/components/.
+  - UI/UX: Rich aesthetics, modern mobile-first design, high visual excellence, accessibility, semantic Tailwind CSS tokens.
+  - Interactive & Dynamic: Smooth animations, micro-interactions, responsive states (Loading, Empty, Error, Success).
+  - Clean Commits: Follow conventional commits in Spanish (<tipo>(<alcance>): <descripción>).
