@@ -37,7 +37,7 @@ export function generateLevelInquiryMessage(data: LevelSelectionForm): string {
 
   const modeText =
     data.startingMode === 'placement_test'
-      ? 'Examen nivelatorio gratuito (con nociones previas)'
+      ? 'Examen nivelatorio (con nociones previas)'
       : 'Nivel Inicial / Desde cero (sin conocimientos previos)';
 
   const scheduleText = data.preferredSchedule

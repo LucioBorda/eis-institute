@@ -2,10 +2,10 @@ import {
   Navbar,
   Hero,
   AccreditationBar,
-  LevelSelector,
   CourseCatalog,
   Testimonials,
   FAQ,
+  LevelSelector,
   Footer,
   FloatingWhatsApp,
 } from '@/features/landing/components';
@@ -17,10 +17,10 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <AccreditationBar />
-        <LevelSelector />
         <CourseCatalog />
         <Testimonials />
         <FAQ />
+        <LevelSelector />
       </main>
       <Footer />
       <FloatingWhatsApp />

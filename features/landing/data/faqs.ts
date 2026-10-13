@@ -5,7 +5,7 @@ export const FAQS_DATA: FAQItem[] = [
     id: 'faq-nivel',
     category: 'inscripcion',
     question: '¿En qué nivel empiezo? ¿Necesito saber inglés?',
-    answer: 'No necesitás conocimientos previos. Si empezás de cero, ingresás directamente a Nivel Inicial (Playgroup para niños o Adults 1 para adultos). Si ya tenés experiencia, coordinamos una nivelación diagnóstica rápida y sin cargo para asignarte el curso exacto sin repetir lo que ya sabés.'
+    answer: 'No necesitás conocimientos previos para comenzar. Si empezás de cero, ingresás directamente a Nivel Inicial (Playgroup para niños o Adults 1 para adultos). Si ya tenés experiencia, coordinamos un examen de nivelación diagnóstica para asignarte el curso exacto sin repetir lo que ya sabés.'
   },
   {
     id: 'faq-certificacion',
@@ -35,74 +35,74 @@ export const FAQS_DATA: FAQItem[] = [
     id: 'faq-inscripcion',
     category: 'inscripcion',
     question: '¿Cómo reservo una vacante?',
-    answer: 'Completá el selector de nivel de esta página o escribinos al WhatsApp de Secretaría (+54 9 221 469-5201). Te indicamos comisiones disponibles y coordinamos la inscripción de forma ágil.'
+    answer: 'Completá el formulario de contacto al final de esta página o escribinos al WhatsApp de Secretaría (+54 9 221 469-5201). Te informamos los aranceles, horarios y coordinamos la inscripción de forma ágil.'
   }
 ];
 
 export const PRIDE_STORIES: PrideStory[] = [
   {
-    id: 'rusia-congreso',
-    title: 'Exalumna seleccionada para Congreso en Rusia',
-    category: 'Logro Internacional',
-    shortDescription: 'Elegida a nivel nacional y reconocida con mención de honor por el intendente Mario Secco.',
-    description: 'Nuestra egresada fue elegida entre postulantes de todo el país para representar a la juventud argentina en Rusia, recibiendo mención oficial del intendente Mario Secco y del Municipio de Ensenada.',
-    imageSrc: '/images/rusia-congreso.webp',
-    imageAlt: 'Exalumna de EIS Institute con mención de honor municipal en Ensenada',
+    id: 'mencion-secco',
+    title: 'Mención Municipal de Honor y Reconocimiento',
+    category: 'Reconocimiento Oficial',
+    shortDescription: 'Encuentro institucional con el intendente Mario Secco por la destacada representación de Ensenada.',
+    description: 'Encuentro institucional y mención de honor del intendente Mario Secco junto a directivos y alumnos por el compromiso educativo y la representación de Ensenada.',
+    imageSrc: '/images/mencion-secco.png',
+    imageAlt: 'Reconocimiento y mención de honor del intendente Mario Secco en Ensenada',
     badge: 'Mención Municipal de Honor',
-    highlightFact: 'Representación en Rusia'
+    highlightFact: 'Reconocimiento en Ensenada'
   },
   {
     id: 'diplomas-anglia',
-    title: 'Entrega Anual de Diplomas Anglia ESOL',
+    title: 'Certificación Británica Oficial Anglia ESOL',
     category: 'Certificación Británica',
-    shortDescription: 'Acto de colación encabezado por la Dirección con diplomas oficiales de validez internacional.',
-    description: 'Cada año la Dirección de EIS encabeza la entrega formal de diplomas británicos Anglia ESOL y avales UTN junto a las familias ensenadenses.',
-    imageSrc: '/images/diplomas-anglia.webp',
-    imageAlt: 'Acto de entrega de diplomas Anglia encabezado por la Directora de EIS',
-    badge: '30 Años Formando Egresados',
+    shortDescription: 'Entrega solemne de diplomas con validez internacional de Reino Unido y aval UTN.',
+    description: 'Cada año la Dirección encabeza la entrega solemne de diplomas británicos de Anglia ESOL Examinations y certificaciones UTN junto a las familias.',
+    imageSrc: '/images/rusia-congreso.webp',
+    imageAlt: 'Acto de colación y diplomas británicos Anglia ESOL',
+    badge: 'Certificación Británica',
     highlightFact: 'Validez internacional'
   },
   {
     id: 'docentes-propios',
     title: 'Formación Docente Propia en EIS',
     category: 'Semillero Académico',
-    shortDescription: 'Alumnos que ingresaron de niños, se graduaron en nuestro profesorado y hoy son docentes del instituto.',
-    description: 'Nuestro gran orgullo: alumnos que comenzaron en salas iniciales completaron su trayectoria, se graduaron y hoy forman a las nuevas generaciones como docentes de EIS.',
+    shortDescription: 'Alumnos que ingresaron de niños, completaron su formación y hoy son docentes titulares.',
+    description: 'Alumnos que comenzaron en los niveles iniciales completaron su trayectoria, se graduaron en el profesorado y hoy enseñan en nuestras aulas.',
     imageSrc: '/images/profesora-recibida.webp',
     imageAlt: 'Profesora egresada de EIS ejerciendo la docencia en el instituto',
     badge: 'Cuerpo Docente Titular',
-    highlightFact: 'Vocación y pertenencia'
+    highlightFact: 'Pertenencia y vocación'
   },
   {
     id: 'instalaciones-aulas',
     title: 'Aulas Climatizadas y Equipamiento Digital',
     category: 'Instalaciones',
-    shortDescription: 'Espacios modernos en el centro de Ensenada con audio, pantallas y biblioteca en inglés.',
-    description: 'Instalaciones sobre calle La Merced con aulas climatizadas, tecnología multimedia interactiva y biblioteca graduada para inmersión total.',
+    shortDescription: 'Espacios modernos con audio, proyecciones interactivas y biblioteca graduada.',
+    description: 'Aulas confortables y climatizadas con tecnología interactiva pensada para una inmersión lingüística óptima.',
     imageSrc: '/images/interior-aula.webp',
-    imageAlt: 'Aulas e instalaciones de EIS Institute en Ensenada',
-    badge: 'Sede Central Ensenada',
+    imageAlt: 'Aulas modernas e instalaciones de EIS Institute',
+    badge: 'Infraestructura Moderna',
     highlightFact: 'Aulas equipadas'
   },
   {
-    id: 'frente-instituto',
-    title: 'Sede Tradicional en Calle La Merced',
+    id: 'sede-ensenada',
+    title: 'Sede Céntrica en Ensenada',
     category: '30 Años en la Ciudad',
-    shortDescription: 'Tres décadas en la zona céntrica y accesible de Ensenada elegidos por tres generaciones.',
-    description: 'Ubicación accesible y segura en Ensenada. Tres décadas siendo el referente de enseñanza de inglés en la región.',
+    shortDescription: 'Tres décadas en una zona céntrica, accesible y segura de Ensenada.',
+    description: 'Ubicación accesible y segura, a pasos del centro cívico y comercial de Ensenada. Tres décadas elegidos por tres generaciones.',
     imageSrc: '/images/instituto-frente.jpg',
-    imageAlt: 'Frente de la sede histórica de EIS Institute en Ensenada',
+    imageAlt: 'Sede de EIS Institute en Ensenada',
     badge: 'Trayectoria Local',
-    highlightFact: 'Sede propia'
+    highlightFact: 'Cerca del centro'
   },
   {
     id: 'alumnos-ninos',
-    title: 'Clases Dinámicas y Estimulantes',
+    title: 'Clases Dinámicas',
     category: 'Metodología',
-    shortDescription: 'Aprender jugando con dinámicas grupales, fonética cuidada y sin presiones.',
-    description: 'Enfoque vivencial donde los más pequeños aprenden con entusiasmo, canciones y proyectos lúdicos desde el primer día.',
+    shortDescription: 'Aprender jugando con dinámicas vivenciales, fonética cuidada y sin presiones.',
+    description: 'Metodología activa y vivencial donde los alumnos aprenden con entusiasmo, canciones y proyectos desde el primer día.',
     imageSrc: '/images/alumnos-ninos.webp',
-    imageAlt: 'Alumnos niños en clases de inglés en EIS Institute',
+    imageAlt: 'Alumnos en clases de inglés en EIS Institute',
     badge: 'Inmersión Natural',
     highlightFact: 'Desde los 4 años'
   }

@@ -105,7 +105,7 @@ export const COURSES_CATALOG: Course[] = [
     shortDescription: 'Desde nivel inicial a fluidez para entrevistas, trabajo y viajes.',
     description: 'Desde nivel inicial absoluto hasta fluidez avanzada. Enfoque conversacional inmediato para entrevistas, viajes y proyectos profesionales.',
     highlights: [
-      'Examen de nivelación previo gratuito sin compromiso',
+      'Examen de nivelación diagnóstico previo',
       'Roleplay de situaciones reales: trabajo, viajes y reuniones',
       'Horarios flexibles (tarde y vespertino)'
     ],

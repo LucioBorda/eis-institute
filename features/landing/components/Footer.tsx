@@ -1,15 +1,16 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import {
   MapPin,
   Phone,
   MessageCircle,
   Clock,
   ExternalLink,
-  GraduationCap,
-  ShieldCheck,
-  Award
+  Award,
+  Globe2,
+  GraduationCap
 } from 'lucide-react';
 import { EIS_CONTACT, buildWhatsAppLink, generateGeneralInquiryMessage } from '../utils/whatsapp';
 
@@ -18,7 +19,7 @@ export const Footer: React.FC = () => {
   const whatsappUrl = buildWhatsAppLink(generateGeneralInquiryMessage());
 
   return (
-    <footer className="bg-[#001A4D] text-slate-300 border-t border-blue-950 pt-10 sm:pt-14 pb-8">
+    <footer className="bg-[#001A4D] text-slate-300 border-t border-blue-950 pt-12 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Grid */}
@@ -26,22 +27,28 @@ export const Footer: React.FC = () => {
           
           {/* Column 1: Brand & Identity (4 cols) */}
           <div className="lg:col-span-4 flex flex-col items-start">
-            <div className="flex items-center gap-2.5 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-[#00205B] border border-white/10 flex items-center justify-center text-white shadow-sm">
-                <GraduationCap className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-3 mb-3">
+              <div className="relative w-12 h-12 flex items-center justify-center shrink-0">
+                <Image
+                  src="/images/logo-eis.png"
+                  alt="EIS Institute"
+                  fill
+                  sizes="48px"
+                  className="object-contain"
+                />
               </div>
               <div>
                 <span className="text-xl font-black text-white tracking-tight leading-none block">
-                  EIS <span className="text-[#E63956]">Institute</span>
+                  EIS <span className="text-[#E63956]">INSTITUTE</span>
                 </span>
-                <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold block mt-0.5">
+                <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold block mt-1">
                   Cultural Inglesa de Ensenada
                 </span>
               </div>
             </div>
 
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
-              30 años de excelencia en la enseñanza del inglés en Ensenada. Formamos futuros bilingües con certificaciones británicas de Anglia ESOL y aval UTN.
+              30 años de excelencia en la enseñanza del inglés en Ensenada. Formamos futuros bilingües con certificaciones británicas de Anglia ESOL y aval oficial de UTN.
             </p>
 
             {/* Social Icons */}
@@ -91,7 +98,7 @@ export const Footer: React.FC = () => {
               <li><a href="#cursos" className="hover:text-white transition-colors">Initial & Preparatory (5-7 años)</a></li>
               <li><a href="#cursos" className="hover:text-white transition-colors">Children 1-3 (Primaria)</a></li>
               <li><a href="#cursos" className="hover:text-white transition-colors">Juniors 1-3 (Secundaria)</a></li>
-              <li><a href="#cursos" className="hover:text-white transition-colors">Adults 1-6 (Niveles A1 a C1)</a></li>
+              <li><a href="#cursos" className="hover:text-white transition-colors">Adults 1-6 (A1 a C1)</a></li>
               <li><a href="#cursos" className="hover:text-white transition-colors">Profesorado de Inglés</a></li>
               <li><a href="#cursos" className="hover:text-white transition-colors">Summer Intensive Course</a></li>
             </ul>
@@ -108,8 +115,8 @@ export const Footer: React.FC = () => {
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#E63956] shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-semibold text-white">Calle La Merced</p>
-                  <p className="text-slate-400">e/ Horacio Cestino y De La Paz, Ensenada</p>
+                  <p className="font-semibold text-white">Sede Central</p>
+                  <p className="text-slate-400">A pasos del centro de Ensenada, Buenos Aires</p>
                   <a
                     href={EIS_CONTACT.MAPS_URL}
                     target="_blank"
@@ -144,14 +151,45 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* Bottom credits */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
-          <div>
-            © {currentYear} EIS Institute (Cultural Inglesa de Ensenada).
+        {/* Institutional Accreditation Badges Section in Footer */}
+        <div className="py-6 border-b border-blue-900/60">
+          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider text-center mb-4">
+            Instituciones que avalan y certifican a EIS Institute
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
+            <div className="flex items-center gap-2.5 bg-[#00205B]/80 px-4 py-2.5 rounded-xl border border-blue-900">
+              <Globe2 className="w-5 h-5 text-[#E63956]" />
+              <div className="text-left">
+                <span className="font-black text-xs text-white block leading-tight">Anglia ESOL Examinations</span>
+                <span className="text-[10px] text-slate-400">Reino Unido / Internacional</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2.5 bg-[#00205B]/80 px-4 py-2.5 rounded-xl border border-blue-900">
+              <GraduationCap className="w-5 h-5 text-blue-300" />
+              <div className="text-left">
+                <span className="font-black text-xs text-white block leading-tight">Universidad Tecnológica Nacional</span>
+                <span className="text-[10px] text-slate-400">Aval Oficial UTN</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2.5 bg-[#00205B]/80 px-4 py-2.5 rounded-xl border border-blue-900">
+              <Award className="w-5 h-5 text-amber-400" />
+              <div className="text-left">
+                <span className="font-black text-xs text-white block leading-tight">Chichester College</span>
+                <span className="text-[10px] text-slate-400">Inglaterra (UK)</span>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center gap-1 text-slate-400">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#E63956]" />
-            <span>Convenio Anglia ESOL & Aval UTN</span>
+        </div>
+
+        {/* Bottom credits */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 text-center sm:text-left">
+          <div>
+            © {currentYear} EIS Institute (Cultural Inglesa de Ensenada). Todos los derechos reservados.
+          </div>
+          <div className="text-[11px] text-slate-400">
+            30 Años de Trayectoria Educativa en Ensenada
           </div>
         </div>
 
