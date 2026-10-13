@@ -112,57 +112,57 @@ export const LevelSelector: React.FC = () => {
           </p>
         </div>
 
-        {/* Contact Form Container - Centered and clean, without preview box */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-9 shadow-md border border-slate-200">
+        {/* Contact Form Container - Editorial & clean styling */}
+        <div className="bg-white rounded-xl p-6 sm:p-8 shadow-sm border border-slate-200">
           <form onSubmit={handleSubmit} className="space-y-6">
             
             {/* Question 1: Who is enrolling */}
             <div>
-              <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-2 sm:mb-3">
+              <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#00205B] mb-2 sm:mb-2.5">
                 1. ¿Quién se inscribe?
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => handleTargetChange('parent_for_child')}
-                  className={`flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
+                  className={`flex items-center gap-2.5 sm:gap-3 p-3 sm:p-3.5 rounded-lg border text-left transition-all ${
                     formData.target === 'parent_for_child'
-                      ? 'border-[#00205B] bg-[#00205B]/5 text-[#00205B] shadow-xs'
+                      ? 'border-[#00205B] bg-[#00205B]/[0.03] text-[#00205B] ring-1 ring-[#00205B]'
                       : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
                   }`}
                 >
-                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ${
+                  <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-md flex items-center justify-center shrink-0 ${
                     formData.target === 'parent_for_child'
                       ? 'bg-[#00205B] text-white'
                       : 'bg-slate-100 text-slate-600'
                   }`}>
-                    <Users className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <Users className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-bold text-xs sm:text-base leading-tight">Padre / Madre</div>
-                    <div className="text-[10px] sm:text-xs text-slate-500">Para mi hijo/a (4 a 16 años)</div>
+                    <div className="font-bold text-xs sm:text-sm leading-tight">Padre / Madre</div>
+                    <div className="text-[10px] sm:text-xs text-slate-500 mt-0.5">Para mi hijo/a (4 a 16 años)</div>
                   </div>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => handleTargetChange('adult_self')}
-                  className={`flex items-center gap-2.5 sm:gap-3 p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
+                  className={`flex items-center gap-2.5 sm:gap-3 p-3 sm:p-3.5 rounded-lg border text-left transition-all ${
                     formData.target === 'adult_self'
-                      ? 'border-[#00205B] bg-[#00205B]/5 text-[#00205B] shadow-xs'
+                      ? 'border-[#00205B] bg-[#00205B]/[0.03] text-[#00205B] ring-1 ring-[#00205B]'
                       : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
                   }`}
                 >
-                  <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ${
+                  <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-md flex items-center justify-center shrink-0 ${
                     formData.target === 'adult_self'
                       ? 'bg-[#00205B] text-white'
                       : 'bg-slate-100 text-slate-600'
                   }`}>
-                    <User className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <User className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="font-bold text-xs sm:text-base leading-tight">Adulto</div>
-                    <div className="text-[10px] sm:text-xs text-slate-500">A partir de 17 años</div>
+                    <div className="font-bold text-xs sm:text-sm leading-tight">Adulto</div>
+                    <div className="text-[10px] sm:text-xs text-slate-500 mt-0.5">A partir de 17 años</div>
                   </div>
                 </button>
               </div>
@@ -171,7 +171,7 @@ export const LevelSelector: React.FC = () => {
             {/* Question 2: Student Age & Optional Name */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="student-age" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-1.5">
+                <label htmlFor="student-age" className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#00205B] mb-1.5">
                   2. Edad del alumno
                 </label>
                 <div className="relative">
@@ -182,7 +182,7 @@ export const LevelSelector: React.FC = () => {
                     max={formData.target === 'adult_self' ? 99 : 17}
                     value={formData.studentAge}
                     onChange={(e) => handleAgeChange(e.target.value)}
-                    className="w-full px-3.5 py-2.5 sm:py-3 rounded-xl border-2 border-slate-200 focus:border-[#00205B] text-[#001A4D] font-bold text-sm sm:text-base"
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#00205B] focus:ring-1 focus:ring-[#00205B] text-[#001A4D] font-bold text-sm outline-hidden transition-all"
                     placeholder={formData.target === 'adult_self' ? 'Ej: 20' : 'Ej: 8'}
                     required
                   />
@@ -198,7 +198,7 @@ export const LevelSelector: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="student-name" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-1.5">
+                <label htmlFor="student-name" className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#00205B] mb-1.5">
                   Nombre del alumno <span className="text-[10px] sm:text-xs text-slate-400 font-normal">(Opcional)</span>
                 </label>
                 <input
@@ -206,42 +206,42 @@ export const LevelSelector: React.FC = () => {
                   id="student-name"
                   value={formData.studentName || ''}
                   onChange={(e) => setFormData((prev) => ({ ...prev, studentName: e.target.value }))}
-                  className="w-full px-3.5 py-2.5 sm:py-3 rounded-xl border-2 border-slate-200 focus:border-[#00205B] text-[#001A4D] text-sm"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#00205B] focus:ring-1 focus:ring-[#00205B] text-[#001A4D] text-sm outline-hidden transition-all"
                   placeholder="Ej: Sofía o Juan"
                 />
               </div>
             </div>
 
-            {/* Question 3: Starting Mode (Sin mencionar 'gratuito') */}
+            {/* Question 3: Starting Mode */}
             <div>
-              <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-2 sm:mb-3">
+              <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#00205B] mb-2 sm:mb-2.5">
                 3. ¿Cómo preferís comenzar?
               </label>
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 <button
                   type="button"
                   onClick={() => handleStartingModeChange('placement_test')}
-                  className={`w-full flex items-start gap-3 p-3.5 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
+                  className={`w-full flex items-start gap-3 p-3 sm:p-3.5 rounded-lg border text-left transition-all ${
                     formData.startingMode === 'placement_test'
-                      ? 'border-[#00205B] bg-[#00205B]/5 text-[#00205B] shadow-xs'
-                      : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
+                      ? 'border-[#00205B] bg-[#00205B]/[0.03] text-[#00205B] ring-1 ring-[#00205B]'
+                      : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/50 text-slate-700'
                   }`}
                 >
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                  <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
                     formData.startingMode === 'placement_test'
                       ? 'bg-[#00205B] text-white'
-                      : 'border-2 border-slate-300'
+                      : 'border border-slate-300'
                   }`}>
-                    {formData.startingMode === 'placement_test' && <CheckCircle2 className="w-3.5 h-3.5" />}
+                    {formData.startingMode === 'placement_test' && <CheckCircle2 className="w-3 h-3" />}
                   </div>
                   <div>
-                    <div className="font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                    <div className="font-bold text-xs sm:text-sm flex items-center gap-2">
                       <span>Examen Nivelatorio</span>
-                      <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-[#E63956] text-white">
+                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-rose-50 text-[#E63956] border border-rose-200/70">
                         Con conocimientos previos
                       </span>
                     </div>
-                    <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+                    <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-relaxed">
                       Para quienes ya estudiaron antes. Permite ingresar al curso exacto correspondiente a su nivel.
                     </p>
                   </div>
@@ -250,24 +250,24 @@ export const LevelSelector: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleStartingModeChange('level_one')}
-                  className={`w-full flex items-start gap-3 p-3.5 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
+                  className={`w-full flex items-start gap-3 p-3 sm:p-3.5 rounded-lg border text-left transition-all ${
                     formData.startingMode === 'level_one'
-                      ? 'border-[#00205B] bg-[#00205B]/5 text-[#00205B] shadow-xs'
-                      : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
+                      ? 'border-[#00205B] bg-[#00205B]/[0.03] text-[#00205B] ring-1 ring-[#00205B]'
+                      : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/50 text-slate-700'
                   }`}
                 >
-                  <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                  <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
                     formData.startingMode === 'level_one'
                       ? 'bg-[#00205B] text-white'
-                      : 'border-2 border-slate-300'
+                      : 'border border-slate-300'
                   }`}>
-                    {formData.startingMode === 'level_one' && <CheckCircle2 className="w-3.5 h-3.5" />}
+                    {formData.startingMode === 'level_one' && <CheckCircle2 className="w-3 h-3" />}
                   </div>
                   <div>
                     <div className="font-bold text-xs sm:text-sm">
                       Nivel Inicial (Comenzar desde Cero)
                     </div>
-                    <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+                    <p className="text-[11px] sm:text-xs text-slate-500 mt-1 leading-relaxed">
                       Sin conocimientos previos. Ingreso directo a los grupos iniciales para empezar desde la base.
                     </p>
                   </div>
@@ -277,7 +277,7 @@ export const LevelSelector: React.FC = () => {
 
             {/* Question 4: Schedule */}
             <div>
-              <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-2 flex items-center gap-1.5">
+              <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#00205B] mb-2 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-slate-500" />
                 <span>Turno preferido</span>
               </label>
@@ -296,10 +296,10 @@ export const LevelSelector: React.FC = () => {
                         preferredSchedule: slot.id as 'morning' | 'afternoon' | 'evening'
                       }))
                     }
-                    className={`py-2 px-2 rounded-xl border text-center text-xs font-bold transition-all ${
+                    className={`py-2 px-2 rounded-lg border text-center text-xs font-semibold transition-all ${
                       formData.preferredSchedule === slot.id
-                        ? 'border-[#00205B] bg-[#00205B] text-white shadow-xs'
-                        : 'border-slate-200 bg-slate-50 text-slate-700'
+                        ? 'border-[#00205B] bg-[#00205B] text-white'
+                        : 'border-slate-200 bg-slate-50/80 hover:bg-slate-100 text-slate-700'
                     }`}
                   >
                     {slot.label}
@@ -308,19 +308,16 @@ export const LevelSelector: React.FC = () => {
               </div>
             </div>
 
-            {/* Big WhatsApp CTA Button */}
+            {/* WhatsApp CTA Button */}
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full py-4 px-5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-black text-sm sm:text-base shadow-md flex items-center justify-center gap-2.5 transition-transform active:scale-95"
+                className="w-full py-3.5 px-5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base shadow-sm flex items-center justify-center gap-2.5 transition-colors"
                 id="btn-contactanos-whatsapp"
               >
                 <MessageCircle className="w-5 h-5 fill-white" />
                 <span>Enviar consulta a Secretaría por WhatsApp</span>
               </button>
-              <p className="text-center text-[11px] text-slate-400 mt-2">
-                ⚡ Se abrirá WhatsApp con los datos completados listos para enviar a la secretaría de EIS.
-              </p>
             </div>
 
           </form>

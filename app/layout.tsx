@@ -1,19 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Oswald, Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0f172a",
+  themeColor: "#001A4D",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -23,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://eisinstitute.com.ar"),
   title: "EIS Institute | Cultural Inglesa de Ensenada - 30 Años de Trayectoria",
   description:
-    "Educación de excelencia en inglés en Ensenada. Cursos para niños, adolescentes y adultos. Exámenes internacionales de Anglia ESOL Examinations, aval oficial de UTN y vinculación con Chichester College.",
+    "Educación de excelencia en inglés en Ensenada para niños, adolescentes y adultos. Exámenes internacionales Anglia ESOL Examinations, aval oficial de UTN y vinculación con Chichester College.",
   keywords: [
     "ingles ensenada",
     "instituto ingles ensenada",
@@ -31,7 +34,7 @@ export const metadata: Metadata = {
     "anglia esol ensenada",
     "cursos de ingles ensenada",
     "eis institute ensenada",
-    "aprender ingles ensenada la plata",
+    "aprender ingles ensenada",
     "examen nivelatorio ingles"
   ],
   authors: [{ name: "EIS Institute" }],
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "EIS Institute | Cultural Inglesa de Ensenada",
     description:
-      "Invertí en el futuro de tus hijos con educación de excelencia en inglés. 30 años formando futuros bilingües con aval UTN y certificaciones Anglia ESOL.",
+      "Educación de excelencia en inglés para todas las edades. 30 años formando futuros bilingües con aval UTN y certificaciones Anglia ESOL.",
     url: "https://eisinstitute.com.ar",
     siteName: "EIS Institute",
     locale: "es_AR",
@@ -79,9 +82,9 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      className={`${inter.variable} ${oswald.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 selection:bg-blue-900 selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#F8F9FA] text-[#001A4D] font-sans selection:bg-[#00205B] selection:text-white">
         {children}
       </body>
     </html>

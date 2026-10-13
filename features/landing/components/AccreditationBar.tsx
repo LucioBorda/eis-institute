@@ -1,43 +1,101 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { ACCREDITATION_PARTNERS } from '../data/institutionInfo';
-import { Award, GraduationCap, Globe2 } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
+
+const PARTNER_LOGOS: Record<string, { src: string; alt: string; bg: string; padding: string }> = {
+  anglia: {
+    src: '/images/anglia-logo2.png',
+    alt: 'Logo Anglia ESOL Examinations',
+    bg: 'bg-[#1882C0]',
+    padding: 'p-0',
+  },
+  utn: {
+    src: '/images/logo-utn.png',
+    alt: 'Logo UTN La Plata',
+    bg: 'bg-white',
+    padding: 'p-1',
+  },
+  chichester: {
+    src: '/images/logo-chichester.png',
+    alt: 'Logo Chichester College',
+    bg: 'bg-white',
+    padding: 'p-1.5',
+  },
+};
 
 export const AccreditationBar: React.FC = () => {
   return (
-    <section id="avales" className="py-8 sm:py-12 bg-white border-y border-slate-200 text-[#001A4D]">
+    <section id="avales" className="py-10 sm:py-14 bg-white border-y border-slate-200 text-[#001A4D]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Minimalist Section Header */}
-        <div className="text-center max-w-xl mx-auto mb-6 sm:mb-8">
-          <h2 className="text-lg sm:text-2xl font-black text-[#00205B] tracking-tight">
-            Respaldo y Convenios Internacionales
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00205B]/10 border border-[#00205B]/20 text-[#00205B] text-xs font-bold uppercase tracking-wide mb-2">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#E63956]" />
+            <span>Respaldo y Convenios</span>
+          </div>
+          <h2 className="text-xl sm:text-3xl font-black text-[#00205B] tracking-tight">
+            Certificaciones de Validez Real
           </h2>
+          <p className="mt-1 text-xs sm:text-sm text-slate-600">
+            Homologación con las instituciones de mayor exigencia de Argentina y el Reino Unido.
+          </p>
         </div>
 
-        {/* 3 Minimalist Cards: Solo el icono y datos esenciales */}
+        {/* 3 Accreditation Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-          {ACCREDITATION_PARTNERS.map((partner) => (
-            <div
-              key={partner.id}
-              className="rounded-2xl p-4 sm:p-5 bg-[#F8F9FA] border border-slate-200 hover:border-[#00205B]/30 transition-all flex items-center gap-3.5"
-            >
-              <div className="w-12 h-12 rounded-xl bg-[#00205B] text-white flex items-center justify-center shrink-0 shadow-xs">
-                {partner.id === 'anglia' && <Globe2 className="w-6 h-6 text-white" />}
-                {partner.id === 'utn' && <GraduationCap className="w-6 h-6 text-white" />}
-                {partner.id === 'chichester' && <Award className="w-6 h-6 text-white" />}
+          {ACCREDITATION_PARTNERS.map((partner) => {
+            const logo = PARTNER_LOGOS[partner.id];
+
+            return (
+              <div
+                key={partner.id}
+                className="rounded-2xl p-5 sm:p-6 bg-[#F8F9FA] border border-slate-200/90 hover:border-[#00205B]/30 hover:shadow-md transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-start gap-3 sm:gap-4 mb-2">
+                    {/* Logo institucional */}
+                    <div
+                      className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl border border-slate-200/90 shadow-xs flex items-center justify-center shrink-0 overflow-hidden ${
+                        logo?.bg || 'bg-white'
+                      } ${logo?.padding || 'p-1'}`}
+                    >
+                      {logo && (
+                        <Image
+                          src={logo.src}
+                          alt={logo.alt}
+                          fill
+                          sizes="56px"
+                          className="object-contain"
+                        />
+                      )}
+                    </div>
+
+                    <div>
+                      <h3 className="text-base sm:text-lg font-bold text-[#00205B] leading-snug">
+                        {partner.name}
+                      </h3>
+                      <p className="text-xs font-semibold text-[#E63956] mt-0.5">
+                        {partner.role}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-slate-600 leading-relaxed mt-2.5">
+                    {partner.description}
+                  </p>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-slate-200/70 text-[11px] font-medium text-slate-500 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E63956]" />
+                  <span>Sede examinadora en Ensenada</span>
+                </div>
               </div>
-              <div>
-                <h3 className="text-sm sm:text-base font-bold text-[#00205B] leading-tight">
-                  {partner.name}
-                </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
-                  {partner.role}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

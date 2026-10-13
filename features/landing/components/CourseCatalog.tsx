@@ -34,7 +34,7 @@ export const CourseCatalog: React.FC = () => {
   const generalWhatsAppUrl = buildWhatsAppLink(generateGeneralInquiryMessage());
 
   return (
-    <section id="cursos" className="py-12 sm:py-18 bg-white text-[#001A4D] border-t border-slate-200">
+    <section id="cursos" className="py-12 sm:py-18 bg-white text-[#001A4D] border-t border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

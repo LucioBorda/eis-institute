@@ -8,9 +8,7 @@ import {
   MessageCircle,
   Clock,
   ExternalLink,
-  Award,
-  Globe2,
-  GraduationCap
+  Award
 } from 'lucide-react';
 import { EIS_CONTACT, buildWhatsAppLink, generateGeneralInquiryMessage } from '../utils/whatsapp';
 
@@ -156,25 +154,52 @@ export const Footer: React.FC = () => {
           <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider text-center mb-4">
             Instituciones que avalan y certifican a EIS Institute
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
-            <div className="flex items-center gap-2.5 bg-[#00205B]/80 px-4 py-2.5 rounded-xl border border-blue-900">
-              <Globe2 className="w-5 h-5 text-[#E63956]" />
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            {/* Anglia ESOL */}
+            <div className="flex items-center gap-3 bg-[#00205B]/80 px-4 py-2.5 rounded-xl border border-blue-900">
+              <div className="relative w-9 h-9 rounded-lg overflow-hidden shrink-0 border border-blue-900/60 bg-[#1882C0]">
+                <Image
+                  src="/images/anglia-logo2.png"
+                  alt="Logo Anglia ESOL Examinations"
+                  fill
+                  sizes="36px"
+                  className="object-contain"
+                />
+              </div>
               <div className="text-left">
                 <span className="font-black text-xs text-white block leading-tight">Anglia ESOL Examinations</span>
                 <span className="text-[10px] text-slate-400">Reino Unido / Internacional</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 bg-[#00205B]/80 px-4 py-2.5 rounded-xl border border-blue-900">
-              <GraduationCap className="w-5 h-5 text-blue-300" />
+            {/* UTN */}
+            <div className="flex items-center gap-3 bg-[#00205B]/80 px-4 py-2.5 rounded-xl border border-blue-900">
+              <div className="relative w-9 h-9 rounded-lg overflow-hidden shrink-0 border border-blue-900/60 bg-white p-0.5">
+                <Image
+                  src="/images/logo-utn.png"
+                  alt="Logo Universidad Tecnológica Nacional"
+                  fill
+                  sizes="36px"
+                  className="object-contain"
+                />
+              </div>
               <div className="text-left">
                 <span className="font-black text-xs text-white block leading-tight">Universidad Tecnológica Nacional</span>
                 <span className="text-[10px] text-slate-400">Aval Oficial UTN</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 bg-[#00205B]/80 px-4 py-2.5 rounded-xl border border-blue-900">
-              <Award className="w-5 h-5 text-amber-400" />
+            {/* Chichester College */}
+            <div className="flex items-center gap-3 bg-[#00205B]/80 px-4 py-2.5 rounded-xl border border-blue-900">
+              <div className="relative w-9 h-9 rounded-lg overflow-hidden shrink-0 border border-blue-900/60 bg-white p-1">
+                <Image
+                  src="/images/logo-chichester.png"
+                  alt="Logo Chichester College"
+                  fill
+                  sizes="36px"
+                  className="object-contain"
+                />
+              </div>
               <div className="text-left">
                 <span className="font-black text-xs text-white block leading-tight">Chichester College</span>
                 <span className="text-[10px] text-slate-400">Inglaterra (UK)</span>
