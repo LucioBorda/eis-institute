@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { MessageCircle, Compass, CheckCircle2 } from 'lucide-react';
 import { buildWhatsAppLink, generateGeneralInquiryMessage } from '../utils/whatsapp';
+import { RevealOnScroll } from './RevealOnScroll';
+import { HeroCarousel } from './HeroCarousel';
 
 export const Hero: React.FC = () => {
   const directWhatsAppUrl = buildWhatsAppLink(generateGeneralInquiryMessage());
@@ -25,7 +26,7 @@ export const Hero: React.FC = () => {
 
             {/* Title: Inclusive for all ages with Oswald condensed feel */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] text-white font-condensed">
-              Educación de excelencia en inglés para{' '}
+              Inglés para{' '}
               <span className="text-[#E63956]">
                 todas las edades
               </span>.
@@ -81,20 +82,11 @@ export const Hero: React.FC = () => {
 
           </div>
 
-          {/* Right Column: Clean Visual Showcase (Sin recuadros ni elementos flotantes) */}
+          {/* Right Column: Visual Showcase con carrusel de imágenes rotativo */}
           <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-sm lg:max-w-none">
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-[#00205B] border border-blue-900 shadow-xl">
-                <Image
-                  src="/images/alumnos-ninos.webp"
-                  alt="Alumnos de EIS Institute en Ensenada"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  className="object-cover object-center"
-                  priority
-                />
-              </div>
-            </div>
+            <RevealOnScroll direction="right" className="mx-auto max-w-sm lg:max-w-none">
+              <HeroCarousel />
+            </RevealOnScroll>
           </div>
 
         </div>

@@ -6,13 +6,11 @@ import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
 import { buildWhatsAppLink, generateGeneralInquiryMessage } from '../utils/whatsapp';
 
 export const FAQ: React.FC = () => {
-  // First item open by default for hint, rest collapsed
-  const [openIds, setOpenIds] = useState<string[]>(['faq-nivel']);
+  // Solo una pregunta abierta a la vez; al abrir una se cierra la anterior
+  const [openId, setOpenId] = useState<string | null>('faq-nivel');
 
   const toggleFaq = (id: string) => {
-    setOpenIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+    setOpenId((prev) => (prev === id ? null : id));
   };
 
   const generalWhatsAppUrl = buildWhatsAppLink(generateGeneralInquiryMessage());
@@ -35,17 +33,17 @@ export const FAQ: React.FC = () => {
           </p>
         </div>
 
-        {/* Accordion List */}
+        {/* Accordion List con transicion suave */}
         <div className="space-y-2.5 sm:space-y-3">
           {FAQS_DATA.map((faq) => {
-            const isOpen = openIds.includes(faq.id);
+            const isOpen = openId === faq.id;
 
             return (
               <div
                 key={faq.id}
-                className={`rounded-xl sm:rounded-2xl transition-all border ${
+                className={`rounded-xl transition-all duration-300 ease-in-out border overflow-hidden ${
                   isOpen
-                    ? 'bg-white border-[#00205B]/30 shadow-sm'
+                    ? 'bg-white border-[#00205B]/40 shadow-sm'
                     : 'bg-white border-slate-200 hover:border-slate-300'
                 }`}
               >
@@ -53,34 +51,41 @@ export const FAQ: React.FC = () => {
                   type="button"
                   onClick={() => toggleFaq(faq.id)}
                   aria-expanded={isOpen}
-                  className="w-full py-3.5 px-4 sm:py-4 sm:px-6 text-left flex items-center justify-between gap-3 focus:outline-hidden"
+                  className="w-full py-3.5 px-4 sm:py-4 sm:px-6 text-left flex items-center justify-between gap-3 focus:outline-hidden transition-colors"
                 >
-                  <span className="font-extrabold text-xs sm:text-base text-[#00205B] leading-snug">
+                  <span className="font-bold text-xs sm:text-base text-[#00205B] leading-snug">
                     {faq.question}
                   </span>
                   <div
-                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ease-in-out ${
                       isOpen
                         ? 'bg-[#00205B] text-white rotate-180'
                         : 'bg-slate-100 text-slate-500'
                     }`}
                   >
-                    <ChevronDown className="w-3.5 h-3.5" />
+                    <ChevronDown className="w-3.5 h-3.5 transition-transform duration-300" />
                   </div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-4 pb-4 sm:px-6 sm:pb-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 animate-in fade-in duration-150">
-                    <p className="mt-2">{faq.answer}</p>
+                {/* Desplegable animado con CSS Grid */}
+                <div
+                  className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+                    isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-4 pb-4 sm:px-6 sm:pb-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
+                      <p className="mt-3">{faq.answer}</p>
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}
         </div>
 
         {/* Support Card */}
-        <div className="mt-8 sm:mt-10 rounded-2xl bg-[#001A4D] text-white p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-8 sm:mt-10 rounded-xl bg-[#001A4D] text-white p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
             <h3 className="font-bold text-sm sm:text-base">¿Tenés otra consulta puntual?</h3>
             <p className="text-xs text-slate-300 mt-0.5">
@@ -92,7 +97,7 @@ export const FAQ: React.FC = () => {
             href={generalWhatsAppUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shrink-0 transition-transform active:scale-95"
+            className="px-4 py-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs sm:text-sm flex items-center gap-2 shrink-0 transition-transform active:scale-95"
           >
             <MessageCircle className="w-4 h-4 fill-white" />
             <span>Hablar con Secretaría</span>

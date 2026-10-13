@@ -7,3 +7,5 @@ export { Testimonials, PrideAndCampusGallery } from './Testimonials';
 export { FAQ, FaqAccordion } from './FAQ';
 export { Footer } from './Footer';
 export { FloatingWhatsApp } from './FloatingWhatsApp';
+export { RevealOnScroll } from './RevealOnScroll';
+export { HeroCarousel } from './HeroCarousel';

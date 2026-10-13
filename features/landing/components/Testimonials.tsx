@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { PRIDE_STORIES } from '../data/faqs';
 import { Award, Globe } from 'lucide-react';
+import { RevealOnScroll } from './RevealOnScroll';
 
 export const Testimonials: React.FC = () => {
   const featuredStory = PRIDE_STORIES[0]; // Mención Secco
@@ -63,16 +64,18 @@ export const Testimonials: React.FC = () => {
               </div>
 
               <div className="lg:col-span-5">
-                <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-white/20 shadow-md">
-                  <Image
-                    src={featuredStory.imageSrc}
-                    alt={featuredStory.imageAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover object-center"
-                    priority
-                  />
-                </div>
+                <RevealOnScroll direction="right">
+                  <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-white/20 shadow-md">
+                    <Image
+                      src={featuredStory.imageSrc}
+                      alt={featuredStory.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      className="object-cover object-center"
+                      priority
+                    />
+                  </div>
+                </RevealOnScroll>
               </div>
 
             </div>
@@ -81,40 +84,46 @@ export const Testimonials: React.FC = () => {
 
         {/* Gallery Grid - Clean without filters */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {galleryStories.map((story) => (
-            <div
+          {galleryStories.map((story, index) => (
+            <RevealOnScroll
               key={story.id}
-              className="bg-[#00205B]/80 border border-blue-900/60 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between"
+              direction={index % 2 === 0 ? 'left' : 'right'}
+              delay={(index % 3) * 120}
+              className="h-full"
             >
-              <div>
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
-                  <Image
-                    src={story.imageSrc}
-                    alt={story.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-center"
-                  />
-                  <div className="absolute top-2.5 left-2.5">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#001A4D]/90 text-white border border-white/20">
-                      {story.badge}
+              <div
+                className="h-full bg-[#00205B]/80 border border-blue-900/60 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between"
+              >
+                <div>
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
+                    <Image
+                      src={story.imageSrc}
+                      alt={story.imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover object-center"
+                    />
+                    <div className="absolute top-2.5 left-2.5">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#001A4D]/90 text-white border border-white/20">
+                        {story.badge}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-4">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#E63956] block">
+                      {story.category}
                     </span>
+                    <h4 className="text-sm sm:text-base font-bold text-white mt-0.5 leading-snug">
+                      {story.title}
+                    </h4>
+                    <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                      {story.shortDescription || story.description}
+                    </p>
                   </div>
                 </div>
-
-                <div className="p-4">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#E63956] block">
-                    {story.category}
-                  </span>
-                  <h4 className="text-sm sm:text-base font-bold text-white mt-0.5 leading-snug">
-                    {story.title}
-                  </h4>
-                  <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
-                    {story.shortDescription || story.description}
-                  </p>
-                </div>
               </div>
-            </div>
+            </RevealOnScroll>
           ))}
         </div>
 

@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { ACCREDITATION_PARTNERS } from '../data/institutionInfo';
 import { ShieldCheck } from 'lucide-react';
+import { RevealOnScroll } from './RevealOnScroll';
 
 const PARTNER_LOGOS: Record<string, { src: string; alt: string; bg: string; padding: string }> = {
   anglia: {
@@ -47,53 +48,59 @@ export const AccreditationBar: React.FC = () => {
 
         {/* 3 Accreditation Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-          {ACCREDITATION_PARTNERS.map((partner) => {
+          {ACCREDITATION_PARTNERS.map((partner, index) => {
             const logo = PARTNER_LOGOS[partner.id];
 
             return (
-              <div
+              <RevealOnScroll
                 key={partner.id}
-                className="rounded-2xl p-5 sm:p-6 bg-[#F8F9FA] border border-slate-200/90 hover:border-[#00205B]/30 hover:shadow-md transition-all flex flex-col justify-between"
+                direction={index === 0 ? 'left' : index === 2 ? 'right' : 'left'}
+                delay={index * 120}
+                className="h-full"
               >
-                <div>
-                  <div className="flex items-start gap-3 sm:gap-4 mb-2">
-                    {/* Logo institucional */}
-                    <div
-                      className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl border border-slate-200/90 shadow-xs flex items-center justify-center shrink-0 overflow-hidden ${
-                        logo?.bg || 'bg-white'
-                      } ${logo?.padding || 'p-1'}`}
-                    >
-                      {logo && (
-                        <Image
-                          src={logo.src}
-                          alt={logo.alt}
-                          fill
-                          sizes="56px"
-                          className="object-contain"
-                        />
-                      )}
+                <div
+                  className="h-full rounded-2xl p-5 sm:p-6 bg-[#F8F9FA] border border-slate-200/90 hover:border-[#00205B]/30 hover:shadow-md transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-start gap-3 sm:gap-4 mb-2">
+                      {/* Logo institucional */}
+                      <div
+                        className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl border border-slate-200/90 shadow-xs flex items-center justify-center shrink-0 overflow-hidden ${
+                          logo?.bg || 'bg-white'
+                        } ${logo?.padding || 'p-1'}`}
+                      >
+                        {logo && (
+                          <Image
+                            src={logo.src}
+                            alt={logo.alt}
+                            fill
+                            sizes="56px"
+                            className="object-contain"
+                          />
+                        )}
+                      </div>
+
+                      <div>
+                        <h3 className="text-base sm:text-lg font-bold text-[#00205B] leading-snug">
+                          {partner.name}
+                        </h3>
+                        <p className="text-xs font-semibold text-[#E63956] mt-0.5">
+                          {partner.role}
+                        </p>
+                      </div>
                     </div>
 
-                    <div>
-                      <h3 className="text-base sm:text-lg font-bold text-[#00205B] leading-snug">
-                        {partner.name}
-                      </h3>
-                      <p className="text-xs font-semibold text-[#E63956] mt-0.5">
-                        {partner.role}
-                      </p>
-                    </div>
+                    <p className="text-xs text-slate-600 leading-relaxed mt-2.5">
+                      {partner.description}
+                    </p>
                   </div>
 
-                  <p className="text-xs text-slate-600 leading-relaxed mt-2.5">
-                    {partner.description}
-                  </p>
+                  <div className="mt-4 pt-3 border-t border-slate-200/70 text-[11px] font-medium text-slate-500 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E63956]" />
+                    <span>Sede examinadora en Ensenada</span>
+                  </div>
                 </div>
-
-                <div className="mt-4 pt-3 border-t border-slate-200/70 text-[11px] font-medium text-slate-500 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E63956]" />
-                  <span>Sede examinadora en Ensenada</span>
-                </div>
-              </div>
+              </RevealOnScroll>
             );
           })}
         </div>
