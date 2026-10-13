@@ -4,28 +4,27 @@ import React, { useState } from 'react';
 import {
   User,
   Users,
-  Calendar,
   Sparkles,
-  HelpCircle,
   MessageCircle,
   Clock,
   Send,
   BookOpen,
-  CheckCircle2
+  CheckCircle2,
+  ChevronDown
 } from 'lucide-react';
 import {
   EnrollmentTarget,
   CourseStartingMode,
-  LevelSelectorState
+  LevelSelectionForm
 } from '../types';
 import {
   buildWhatsAppLink,
   generateLevelInquiryMessage,
   EIS_CONTACT
-} from '@/utils/whatsapp';
+} from '../utils/whatsapp';
 
 export const LevelSelector: React.FC = () => {
-  const [formData, setFormData] = useState<LevelSelectorState>({
+  const [formData, setFormData] = useState<LevelSelectionForm>({
     target: 'parent_for_child',
     studentName: '',
     studentAge: '8',
@@ -35,7 +34,7 @@ export const LevelSelector: React.FC = () => {
     notes: ''
   });
 
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [showPreviewMobile, setShowPreviewMobile] = useState(false);
 
   const handleTargetChange = (target: EnrollmentTarget) => {
     setFormData((prev) => ({
@@ -43,7 +42,6 @@ export const LevelSelector: React.FC = () => {
       target,
       studentAge: target === 'adult_self' ? '25' : '8'
     }));
-    setHasInteracted(true);
   };
 
   const handleStartingModeChange = (startingMode: CourseStartingMode) => {
@@ -52,7 +50,6 @@ export const LevelSelector: React.FC = () => {
       startingMode,
       previousEnglishExperience: startingMode === 'placement_test'
     }));
-    setHasInteracted(true);
   };
 
   const generatedMessage = generateLevelInquiryMessage(formData);
@@ -64,91 +61,86 @@ export const LevelSelector: React.FC = () => {
   };
 
   return (
-    <section id="selector-nivel" className="relative py-20 bg-gradient-to-b from-slate-900 via-slate-950 to-blue-950 text-white">
-      {/* Decorative background glows */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="selector-nivel" className="py-14 sm:py-20 bg-[#F8F9FA] text-[#001A4D]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-600/40 text-emerald-300 text-xs font-bold tracking-wide uppercase mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Asistente de Inscripción Online</span>
+        {/* Section Title - Compact */}
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E63956]/10 border border-[#E63956]/30 text-[#E63956] text-xs font-bold uppercase tracking-wide mb-2">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Test de Nivel Rápido</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight">
-            Descubrí tu Nivel Ideal en 1 Minuto
+          <h2 className="text-2xl sm:text-4xl font-black text-[#00205B] tracking-tight">
+            Descubrí tu Nivel en 1 Minuto
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-slate-300">
-            Respondé 3 preguntas simples y contactá a Secretaría por WhatsApp con tu consulta preconfigurada para reservar tu vacante sin demoras.
+          <p className="mt-1.5 text-xs sm:text-base text-slate-600">
+            Elegí las opciones y recibí el contacto directo con secretaría con tu consulta preconfigurada.
           </p>
         </div>
 
-        {/* Main Interactive Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* Form Column */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 text-slate-900 shadow-2xl border border-slate-100">
-            <form onSubmit={handleSubmit} className="space-y-7">
+          <div className="lg:col-span-7 bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md border border-slate-200">
+            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
               
               {/* Question 1: Who is enrolling */}
               <div>
-                <label className="block text-sm font-extrabold uppercase tracking-wider text-slate-700 mb-3 flex items-center justify-between">
-                  <span>1. ¿Quién se inscribe?</span>
-                  <span className="text-xs font-medium text-slate-500 normal-case">Elegí una opción</span>
+                <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-2 sm:mb-3">
+                  1. ¿Quién se inscribe?
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
                   <button
                     type="button"
                     onClick={() => handleTargetChange('parent_for_child')}
-                    className={`flex items-center gap-3.5 p-4 rounded-2xl border-2 text-left transition-all ${
+                    className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
                       formData.target === 'parent_for_child'
-                        ? 'border-blue-900 bg-blue-50/70 text-blue-950 ring-2 ring-blue-900/20 shadow-sm'
+                        ? 'border-[#00205B] bg-[#00205B]/5 text-[#00205B] shadow-xs'
                         : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
                     }`}
                   >
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
+                    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ${
                       formData.target === 'parent_for_child'
-                        ? 'bg-blue-900 text-white'
+                        ? 'bg-[#00205B] text-white'
                         : 'bg-slate-100 text-slate-600'
                     }`}>
-                      <Users className="w-5 h-5" />
+                      <Users className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     <div>
-                      <div className="font-bold text-sm sm:text-base leading-tight">Soy Padre / Madre</div>
-                      <div className="text-xs text-slate-500 mt-0.5">Inscribo a mi hijo/a</div>
+                      <div className="font-bold text-xs sm:text-base leading-tight">Padre / Madre</div>
+                      <div className="text-[10px] sm:text-xs text-slate-500">Para mi hijo/a</div>
                     </div>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => handleTargetChange('adult_self')}
-                    className={`flex items-center gap-3.5 p-4 rounded-2xl border-2 text-left transition-all ${
+                    className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
                       formData.target === 'adult_self'
-                        ? 'border-blue-900 bg-blue-50/70 text-blue-950 ring-2 ring-blue-900/20 shadow-sm'
+                        ? 'border-[#00205B] bg-[#00205B]/5 text-[#00205B] shadow-xs'
                         : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
                     }`}
                   >
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
+                    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ${
                       formData.target === 'adult_self'
-                        ? 'bg-blue-900 text-white'
+                        ? 'bg-[#00205B] text-white'
                         : 'bg-slate-100 text-slate-600'
                     }`}>
-                      <User className="w-5 h-5" />
+                      <User className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     <div>
-                      <div className="font-bold text-sm sm:text-base leading-tight">Soy Adulto</div>
-                      <div className="text-xs text-slate-500 mt-0.5">Inscripción personal (+17 años)</div>
+                      <div className="font-bold text-xs sm:text-base leading-tight">Adulto</div>
+                      <div className="text-[10px] sm:text-xs text-slate-500">+17 años</div>
                     </div>
                   </button>
                 </div>
               </div>
 
               {/* Question 2: Student Age & Optional Name */}
-              <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
-                <div className="sm:col-span-6">
-                  <label htmlFor="student-age" className="block text-sm font-extrabold uppercase tracking-wider text-slate-700 mb-2">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="student-age" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-1.5">
                     2. Edad del alumno
                   </label>
                   <div className="relative">
@@ -158,74 +150,63 @@ export const LevelSelector: React.FC = () => {
                       min="4"
                       max="99"
                       value={formData.studentAge}
-                      onChange={(e) => {
-                        setFormData((prev) => ({ ...prev, studentAge: e.target.value }));
-                        setHasInteracted(true);
-                      }}
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 text-slate-900 font-bold text-base transition-colors"
+                      onChange={(e) => setFormData((prev) => ({ ...prev, studentAge: e.target.value }))}
+                      className="w-full px-3.5 py-2.5 sm:py-3 rounded-xl border-2 border-slate-200 focus:border-[#00205B] text-[#001A4D] font-bold text-sm sm:text-base"
                       placeholder="Ej: 8"
                       required
                     />
-                    <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-500 pointer-events-none">
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400 pointer-events-none">
                       años
                     </div>
                   </div>
-                  {formData.target === 'parent_for_child' && Number(formData.studentAge) < 4 && (
-                    <p className="text-xs text-amber-600 mt-1">
-                      💡 En EIS recibimos alumnos a partir de los 4 años cumplidos (Playgroup).
-                    </p>
-                  )}
                 </div>
 
-                <div className="sm:col-span-6">
-                  <label htmlFor="student-name" className="block text-sm font-extrabold uppercase tracking-wider text-slate-700 mb-2">
-                    Nombre del alumno <span className="text-xs font-normal text-slate-500">(Opcional)</span>
+                <div>
+                  <label htmlFor="student-name" className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-1.5">
+                    Nombre <span className="text-[10px] sm:text-xs text-slate-400 font-normal">(Opcional)</span>
                   </label>
                   <input
                     type="text"
                     id="student-name"
                     value={formData.studentName || ''}
-                    onChange={(e) => {
-                      setFormData((prev) => ({ ...prev, studentName: e.target.value }));
-                      setHasInteracted(true);
-                    }}
-                    className="w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 text-slate-900 text-sm font-medium transition-colors"
-                    placeholder="Ej: Sofía o Juan"
+                    onChange={(e) => setFormData((prev) => ({ ...prev, studentName: e.target.value }))}
+                    className="w-full px-3.5 py-2.5 sm:py-3 rounded-xl border-2 border-slate-200 focus:border-[#00205B] text-[#001A4D] text-sm"
+                    placeholder="Ej: Sofía"
                   />
                 </div>
               </div>
 
-              {/* Question 3: Placement Test vs Starter Level */}
+              {/* Question 3: Starting Mode */}
               <div>
-                <label className="block text-sm font-extrabold uppercase tracking-wider text-slate-700 mb-3">
+                <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-2 sm:mb-3">
                   3. ¿Cómo prefiere comenzar?
                 </label>
-                <div className="grid grid-cols-1 gap-3">
+                <div className="space-y-2 sm:space-y-2.5">
                   <button
                     type="button"
                     onClick={() => handleStartingModeChange('placement_test')}
-                    className={`flex items-start gap-4 p-4 rounded-2xl border-2 text-left transition-all ${
+                    className={`w-full flex items-start gap-3 p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
                       formData.startingMode === 'placement_test'
-                        ? 'border-blue-900 bg-blue-50/70 text-blue-950 ring-2 ring-blue-900/20 shadow-sm'
+                        ? 'border-[#00205B] bg-[#00205B]/5 text-[#00205B] shadow-xs'
                         : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
                     }`}
                   >
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
                       formData.startingMode === 'placement_test'
-                        ? 'bg-blue-900 text-white'
+                        ? 'bg-[#00205B] text-white'
                         : 'border-2 border-slate-300'
                     }`}>
-                      {formData.startingMode === 'placement_test' && <CheckCircle2 className="w-4 h-4" />}
+                      {formData.startingMode === 'placement_test' && <CheckCircle2 className="w-3.5 h-3.5" />}
                     </div>
-                    <div className="flex-1">
-                      <div className="font-bold text-sm sm:text-base flex items-center gap-2">
-                        <span>Realizar Examen Nivelatorio Gratuito</span>
-                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                    <div>
+                      <div className="font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                        <span>Examen Nivelatorio Gratuito</span>
+                        <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-[#E63956] text-white">
                           Recomendado
                         </span>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                        Ya tiene nociones previas o estudió antes. Coordinamos un diagnóstico ágil para no empezar de cero y ubicarlo en el curso justo.
+                      <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+                        Ya tiene nociones previas. Para ingresar al nivel exacto.
                       </p>
                     </div>
                   </button>
@@ -233,154 +214,147 @@ export const LevelSelector: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => handleStartingModeChange('level_one')}
-                    className={`flex items-start gap-4 p-4 rounded-2xl border-2 text-left transition-all ${
+                    className={`w-full flex items-start gap-3 p-3 sm:p-3.5 rounded-xl sm:rounded-2xl border-2 text-left transition-all ${
                       formData.startingMode === 'level_one'
-                        ? 'border-blue-900 bg-blue-50/70 text-blue-950 ring-2 ring-blue-900/20 shadow-sm'
+                        ? 'border-[#00205B] bg-[#00205B]/5 text-[#00205B] shadow-xs'
                         : 'border-slate-200 bg-white hover:border-slate-300 text-slate-700'
                     }`}
                   >
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
                       formData.startingMode === 'level_one'
-                        ? 'bg-blue-900 text-white'
+                        ? 'bg-[#00205B] text-white'
                         : 'border-2 border-slate-300'
                     }`}>
-                      {formData.startingMode === 'level_one' && <CheckCircle2 className="w-4 h-4" />}
+                      {formData.startingMode === 'level_one' && <CheckCircle2 className="w-3.5 h-3.5" />}
                     </div>
-                    <div className="flex-1">
-                      <div className="font-bold text-sm sm:text-base">
-                        Empezar desde Nivel Inicial (Desde Cero)
+                    <div>
+                      <div className="font-bold text-xs sm:text-sm">
+                        Nivel Inicial (Desde Cero)
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                        Sin conocimientos previos o primer contacto formal con el idioma. Iniciará desde la base más amigable y estructurada.
+                      <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+                        Sin conocimientos previos. Para empezar desde la base.
                       </p>
                     </div>
                   </button>
                 </div>
               </div>
 
-              {/* Question 4: Schedule preference */}
+              {/* Question 4: Schedule */}
               <div>
-                <label className="block text-sm font-extrabold uppercase tracking-wider text-slate-700 mb-2 flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-slate-500" />
-                  <span>Franja horaria preferida</span>
+                <label className="block text-xs sm:text-sm font-extrabold uppercase tracking-wider text-[#00205B] mb-2 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Turno preferido</span>
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    { id: 'morning', label: 'Mañana', time: '09:00 a 12:00' },
-                    { id: 'afternoon', label: 'Tarde', time: '14:00 a 17:30' },
-                    { id: 'evening', label: 'Vespertino', time: '18:00 a 20:30' },
+                    { id: 'morning', label: 'Mañana' },
+                    { id: 'afternoon', label: 'Tarde' },
+                    { id: 'evening', label: 'Vespertino' },
                   ].map((slot) => (
                     <button
                       key={slot.id}
                       type="button"
-                      onClick={() => {
+                      onClick={() =>
                         setFormData((prev) => ({
                           ...prev,
                           preferredSchedule: slot.id as 'morning' | 'afternoon' | 'evening'
-                        }));
-                        setHasInteracted(true);
-                      }}
-                      className={`p-3 rounded-xl border text-center transition-all ${
+                        }))
+                      }
+                      className={`py-2 px-2 rounded-xl border text-center text-xs font-bold transition-all ${
                         formData.preferredSchedule === slot.id
-                          ? 'border-blue-900 bg-blue-900 text-white font-bold shadow-xs'
-                          : 'border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium'
+                          ? 'border-[#00205B] bg-[#00205B] text-white shadow-xs'
+                          : 'border-slate-200 bg-slate-50 text-slate-700'
                       }`}
                     >
-                      <div className="text-xs sm:text-sm">{slot.label}</div>
-                      <div className={`text-[10px] mt-0.5 ${formData.preferredSchedule === slot.id ? 'text-blue-200' : 'text-slate-500'}`}>
-                        {slot.time}
-                      </div>
+                      {slot.label}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Submit CTA button for mobile/desktop inside form */}
+              {/* Submit CTA Button directly below form */}
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-base sm:text-lg shadow-xl shadow-emerald-700/25 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                  className="w-full py-3.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-black text-sm sm:text-base shadow-md flex items-center justify-center gap-2.5 transition-transform active:scale-95"
                   id="btn-selector-submit"
                 >
-                  <MessageCircle className="w-6 h-6 fill-white" />
-                  <span>Consultar por WhatsApp con estos datos</span>
+                  <MessageCircle className="w-5 h-5 fill-white" />
+                  <span>Consultar por WhatsApp con mis datos</span>
                 </button>
-                <p className="text-center text-xs text-slate-500 mt-2.5">
-                  ⚡ Se abrirá WhatsApp con el mensaje ya redactado para la secretaría de EIS.
-                </p>
+              </div>
+
+              {/* Mobile message toggle for preview without cluttering */}
+              <div className="block lg:hidden pt-1">
+                <button
+                  type="button"
+                  onClick={() => setShowPreviewMobile(!showPreviewMobile)}
+                  className="w-full text-center text-xs text-slate-500 font-semibold flex items-center justify-center gap-1 hover:text-[#00205B]"
+                >
+                  <span>{showPreviewMobile ? 'Ocultar' : 'Ver'} mensaje redactado para secretaría</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${showPreviewMobile ? 'rotate-180' : ''}`} />
+                </button>
+
+                {showPreviewMobile && (
+                  <div className="mt-2 p-3 rounded-xl bg-slate-100 border border-slate-200 text-xs text-slate-700 whitespace-pre-wrap leading-relaxed animate-in fade-in duration-150">
+                    {generatedMessage}
+                  </div>
+                )}
               </div>
 
             </form>
           </div>
 
-          {/* Right Column: WhatsApp Live Message Preview & Reassurance */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            
-            {/* WhatsApp Simulator Card */}
-            <div className="bg-slate-900 rounded-3xl p-5 sm:p-6 border border-slate-800 shadow-2xl relative overflow-hidden">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold shadow-md">
+          {/* Right Column: WhatsApp Simulator on Desktop (Hidden on mobile to avoid text wall) */}
+          <div className="hidden lg:flex lg:col-span-5 flex-col gap-5">
+            <div className="bg-[#001A4D] rounded-3xl p-5 border border-blue-900 shadow-xl text-white">
+              <div className="flex items-center justify-between pb-3 border-b border-blue-900/80 mb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center text-white font-bold text-xs">
                     EIS
                   </div>
                   <div>
-                    <h3 className="font-bold text-white text-sm sm:text-base">
-                      Secretaría EIS Institute
-                    </h3>
-                    <p className="text-xs text-emerald-400 flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      En línea • Respuesta ágil
+                    <h3 className="font-bold text-white text-sm">Secretaría EIS</h3>
+                    <p className="text-[11px] text-[#25D366] flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#25D366] animate-pulse" />
+                      En línea • Respuesta rápida
                     </p>
                   </div>
                 </div>
-                <div className="text-xs text-slate-400 font-medium">
-                  {EIS_CONTACT.PHONE_DISPLAY}
-                </div>
+                <span className="text-xs text-slate-400">{EIS_CONTACT.PHONE_DISPLAY}</span>
               </div>
 
-              {/* WhatsApp message bubble */}
-              <div className="bg-[#0b141a] rounded-2xl p-4 border border-emerald-950/60 shadow-inner">
-                <div className="text-[11px] font-semibold text-slate-400 mb-2 uppercase tracking-wider flex items-center gap-1.5">
-                  <Send className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Mensaje que se enviará automáticamente:</span>
+              <div className="bg-[#0b141a] rounded-xl p-3 border border-emerald-950/60 shadow-inner">
+                <div className="text-[10px] font-semibold text-slate-400 mb-1.5 flex items-center gap-1">
+                  <Send className="w-3 h-3 text-[#25D366]" />
+                  <span>Mensaje preconfigurado:</span>
                 </div>
                 
-                <div className="bg-[#005c4b] text-white rounded-2xl rounded-tr-xs p-4 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap font-sans shadow-md border border-emerald-700/40">
+                <div className="bg-[#005c4b] text-white rounded-xl p-3 text-xs leading-relaxed whitespace-pre-wrap font-sans">
                   {generatedMessage}
-                  <div className="text-right text-[10px] text-emerald-200 mt-2 flex items-center justify-end gap-1">
-                    <span>Justo ahora</span>
-                    <CheckCircle2 className="w-3 h-3 text-emerald-200" />
-                  </div>
                 </div>
               </div>
 
-              {/* Direct Link Action */}
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 w-full py-3.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors"
+                className="mt-4 w-full py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors"
               >
-                <Send className="w-4 h-4 text-emerald-400" />
-                <span>Abrir directamente en WhatsApp Web / App</span>
+                <Send className="w-3.5 h-3.5 text-[#25D366]" />
+                <span>Abrir en WhatsApp</span>
               </a>
             </div>
 
-            {/* Why Level Test Box */}
-            <div className="bg-blue-950/50 rounded-3xl p-6 border border-blue-800/40 backdrop-blur-md">
-              <h4 className="font-bold text-amber-300 text-base flex items-center gap-2 mb-2">
-                <BookOpen className="w-5 h-5 text-amber-400" />
-                <span>¿Por qué es clave el examen nivelatorio?</span>
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                El examen de nivelación en EIS Institute es una entrevista pedagógica amena y sin costo. Nos permite conocer las fortalezas de cada alumno para que ingrese al curso donde aprenderá al ritmo adecuado, rodeado de compañeros de edad y nivel similares.
-              </p>
-              <div className="mt-4 pt-4 border-t border-blue-900/60 flex items-center justify-between text-xs text-slate-400">
-                <span>⏱️ Duración: 15-20 minutos</span>
-                <span>📍 Modalidad presencial u online</span>
+            <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm text-xs text-slate-600 space-y-2">
+              <div className="font-bold text-[#00205B] text-sm flex items-center gap-1.5">
+                <BookOpen className="w-4 h-4 text-[#E63956]" />
+                <span>¿Por qué realizar el test previo?</span>
               </div>
+              <p className="leading-relaxed">
+                Nos permite conocer las fortalezas de cada alumno para que ingrese en el grupo justo, con compañeros de edad y nivel similares.
+              </p>
             </div>
-
           </div>
 
         </div>

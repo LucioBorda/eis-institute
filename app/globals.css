@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+  --color-eis-blue: #00205B;
+  --color-eis-blue-dark: #001A4D;
+  --color-eis-blue-light: #0d3882;
+  --color-eis-red: #E63956;
+  --color-eis-red-bright: #ED1C24;
+  --color-eis-bg: #F8F9FA;
+  --color-eis-whatsapp: #25D366;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -7,8 +17,8 @@
   }
 
   body {
-    background-color: #f8fafc;
-    color: #0f172a;
+    background-color: #F8F9FA;
+    color: #001A4D;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
@@ -20,8 +30,8 @@
     opacity: 1;
   }
   50% {
-    transform: scale(1.03);
-    opacity: 0.95;
+    transform: scale(1.02);
+    opacity: 0.96;
   }
 }
 
@@ -34,7 +44,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
   }
 }
 

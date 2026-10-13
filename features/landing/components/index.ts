@@ -1,9 +1,9 @@
 export { Navbar } from './Navbar';
-export { HeroSection } from './HeroSection';
+export { Hero, HeroSection } from './Hero';
 export { AccreditationBar } from './AccreditationBar';
 export { LevelSelector } from './LevelSelector';
-export { AcademicOffer } from './AcademicOffer';
-export { PrideAndCampusGallery } from './PrideAndCampusGallery';
-export { FaqAccordion } from './FaqAccordion';
+export { CourseCatalog, AcademicOffer } from './CourseCatalog';
+export { Testimonials, PrideAndCampusGallery } from './Testimonials';
+export { FAQ, FaqAccordion } from './FAQ';
 export { Footer } from './Footer';
 export { FloatingWhatsApp } from './FloatingWhatsApp';

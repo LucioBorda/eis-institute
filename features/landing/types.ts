@@ -14,18 +14,17 @@ export interface Course {
   ageRange: string;
   weeklyHours: string;
   sessionsPerWeek: string;
-  scheduleOptions?: string;
   description: string;
+  shortDescription?: string;
   highlights: string[];
   certification?: string;
   isPopular?: boolean;
 }
 
 export type EnrollmentTarget = 'parent_for_child' | 'adult_self';
-
 export type CourseStartingMode = 'placement_test' | 'level_one';
 
-export interface LevelSelectorState {
+export interface LevelSelectionForm {
   target: EnrollmentTarget;
   studentName?: string;
   studentAge: string;
@@ -35,18 +34,25 @@ export interface LevelSelectorState {
   notes?: string;
 }
 
-export interface FaqItem {
+// Backwards-compatible alias
+export type LevelSelectorState = LevelSelectionForm;
+
+export interface FAQItem {
   id: string;
   question: string;
   answer: string;
   category?: 'general' | 'inscripcion' | 'certificaciones' | 'cursada';
 }
 
+// Backwards-compatible alias
+export type FaqItem = FAQItem;
+
 export interface PrideStory {
   id: string;
   title: string;
   category: string;
   description: string;
+  shortDescription?: string;
   imageSrc: string;
   imageAlt: string;
   badge: string;
@@ -60,4 +66,20 @@ export interface AccreditationPartner {
   role: string;
   description: string;
   badgeText: string;
+}
+
+export interface InstitutionInfo {
+  name: string;
+  shortName: string;
+  subtitle: string;
+  phoneDisplay: string;
+  whatsappNumber: string;
+  address: string;
+  addressShort: string;
+  email: string;
+  instagramUrl: string;
+  facebookUrl: string;
+  mapsUrl: string;
+  scheduleHours: string;
+  yearsOfExperience: number;
 }
