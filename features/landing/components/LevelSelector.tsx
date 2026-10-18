@@ -7,7 +7,8 @@ import {
   MessageCircle,
   Clock,
   CheckCircle2,
-  Mail
+  Mail,
+  ChevronDown
 } from 'lucide-react';
 import {
   EnrollmentTarget,
@@ -94,6 +95,10 @@ export const LevelSelector: React.FC = () => {
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 
+  const minAge = formData.target === 'adult_self' ? 17 : 4;
+  const maxAge = formData.target === 'adult_self' ? 99 : 16;
+  const ageOptions = Array.from({ length: maxAge - minAge + 1 }, (_, i) => minAge + i);
+
   return (
     <section id="contactanos" className="py-14 sm:py-20 bg-[#F8F9FA] text-[#001A4D] border-t border-slate-200 scroll-mt-10">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -172,22 +177,27 @@ export const LevelSelector: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="student-age" className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-[#00205B] mb-1.5">
-                  2. Edad del alumno
+                  2. Edad del alumno{' '}
+                  <span className="text-[10px] sm:text-xs text-slate-400 font-normal">
+                    {formData.target === 'parent_for_child' ? '(4 a 16 años)' : '(17 a 99 años)'}
+                  </span>
                 </label>
                 <div className="relative">
-                  <input
-                    type="number"
+                  <select
                     id="student-age"
-                    min={formData.target === 'adult_self' ? 17 : 4}
-                    max={formData.target === 'adult_self' ? 99 : 17}
                     value={formData.studentAge}
                     onChange={(e) => handleAgeChange(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#00205B] focus:ring-1 focus:ring-[#00205B] text-[#001A4D] font-bold text-sm outline-hidden transition-all"
-                    placeholder={formData.target === 'adult_self' ? 'Ej: 20' : 'Ej: 8'}
+                    className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#00205B] focus:ring-1 focus:ring-[#00205B] text-[#001A4D] font-bold text-sm outline-hidden transition-all bg-white appearance-none cursor-pointer pr-10"
                     required
-                  />
-                  <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400 pointer-events-none">
-                    años
+                  >
+                    {ageOptions.map((age) => (
+                      <option key={age} value={age}>
+                        {age} años
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                    <ChevronDown className="w-4 h-4" />
                   </div>
                 </div>
                 {ageError && (
